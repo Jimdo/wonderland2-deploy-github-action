@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -uo pipefail
 
 function log() {
   echo "$(date -u) $*"
@@ -36,11 +36,14 @@ else
   done
   if [ "$WAIT_TIME" -lt 10 ]; then
     wl --environment="$3" kubectl rollout status deploy "$service_name" --timeout="$5"
+    retVal=$?
+    if [ $retVal -ne 0 ]; then
+      log "Deployment failed or did not succeed within the specified timeout. Service name: $service_name"
+      log "For hints how to debug this, please take a look at: https://backstage.jimdex.net/docs/default/component/wonderland2-k8s-operator/How-To/Debug/"
+      exit $retVal
+    fi
     log "Deployed $service_name to Wonderland 2 successfully"
     log "Getting service status"
     wl --environment="$3" kubectl get ws "$service_name"
-  else
-    log "Failed to get deployment for service $service_name"
-    exit 1
   fi
 fi
