@@ -28,6 +28,9 @@ if $6 == "true"; then
   log "Deleting $service_name from Wonderland 2"
   wl --environment="$3" kubectl delete -f "$4"
 else
+  log "Validating $service_name on Wonderland 2"
+  wl --environment="$3" kubectl apply --dry-run=server -f "$4"
+  log "Validated $service_name successfully on Wonderland 2"
   log "Deploying $service_name to Wonderland 2"
   wl --environment="$3" kubectl apply -f "$4"
   log "Waiting for service to become available"
