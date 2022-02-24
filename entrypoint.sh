@@ -37,7 +37,7 @@ else
   WAIT_TIME=0
   until [ $WAIT_TIME -lt 10 ] || wl --environment="$3" kubectl get deployment "$service_name" 2>/dev/null; do
     sleep $((WAIT_TIME ++))
-    log "waiting ${WAIT_TIME}s for deployment to become available"
+    log "Waiting ${WAIT_TIME}s for deployment to become available"
   done
   if [ "$WAIT_TIME" -lt 10 ]; then
     wl --environment="$3" kubectl rollout status deploy "$service_name" --timeout="$5"
