@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   test_e2e:
-    runs-on: ubuntu-latest
+    runs-on: [jimdex-default-runners]
     concurrency: dummy-deployment
     steps:
     - uses: actions/checkout@v1
