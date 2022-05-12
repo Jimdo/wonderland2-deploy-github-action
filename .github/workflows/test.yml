@@ -21,7 +21,7 @@ jobs:
           secret/github/jimdo-bot GITHUB_TOKEN ;
           secret/github/jimdo-bot SSH_KEY ;
     - name: Pre-test action (assesses security, safely)
-      run: env | cut -d"=" -f1
+      run: env | cut -d"=" -f1 
     - name: Test Action (default CLI release)
       uses: ./
       with:
