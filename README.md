@@ -1,5 +1,7 @@
 # wonderland2-deploy-github-action
 
+# This action is deprecated and will be unmantained soon. Please migrate to [wonderland2-setup-action](https://github.com/Jimdo/wonderland2-setup-action)
+
 A GitHub action to deploy or delete services to Wonderland2.
 Pinned to a known working realease of WL2 CLI, which might not be the latest. See [cli_version parameter](#cli_version).
 
